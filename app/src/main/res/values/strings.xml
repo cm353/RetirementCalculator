@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">RetirementCalculator</string>
+    <string name="name">name</string>
+    <string name="birth_date">birth date</string>
+    <string name="retire_with_67">Retire with 67?</string>
+    <string name="tv_result">you may have to work %1s years and %2s days</string>
+    <string name="tv_result_1">you may have to work %1s years and %2s day</string>
+    <string name="tv_result_2">you may have to work %1s year and %2s days</string>
+    <string name="tv_result_3">you may have to work %1s year and %2s day</string>
+    <string name="tv_result_4">you may have to work %2s days</string>
+    <string name="tv_result_5">you may have to work %2s day</string>
+    <string name="tv_result_6">today is your last workday</string>
+    <string name="tv_name">Hello %1s, </string>
+    <string name="toast_dateOfBirth">Your date of birth can\'t be in future</string>
+    <string name="toast_name">Please enter your name</string>
+    <string name="btn_retirement">Remaining time to retirement</string>
+    <string name="retired">You are retired</string>
+</resources>
