@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rentenrechner</string>
+    <string name="name">Name</string>
+    <string name="birth_date">Geburtsdatum</string>
+    <string name="retire_with_67">Rente mit 67?</string>
+    <string name="tv_result">Sie müssen noch %1s Jahre und %2s Tage arbeiten</string>
+    <string name="tv_result_1">Sie müssen noch %1s Jahre und %2s Tag arbeiten</string>
+    <string name="tv_result_2">Sie müssen noch %1s Jahr und %2s Tage arbeiten</string>
+    <string name="tv_result_3">Sie müssen noch %1s Jahr und %2s Tag arbeiten</string>
+    <string name="tv_result_4">Sie müssen noch  %1s Tage arbeiten</string>
+    <string name="tv_result_5">Sie müssen noch  %1s Tag arbeiten</string>
+    <string name="tv_result_6">heute ist ihr letzter Arbeitstag</string>
+    <string name="tv_name">Hallo %1s,</string>
+    <string name="toast_dateOfBirth">Ihr Geburtsdatum kann nicht in der Zukunft sein</string>
+    <string name="toast_name">Bitte geben Sie Ihren Namen ein</string>
+    <string name="btn_retirement">Verbleibende Zeit bis zur Rente</string>
+    <string name="retired">Sie sind bereits in Rente</string>
+</resources>

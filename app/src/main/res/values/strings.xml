@@ -7,8 +7,8 @@
     <string name="tv_result_1">you may have to work %1s years and %2s day</string>
     <string name="tv_result_2">you may have to work %1s year and %2s days</string>
     <string name="tv_result_3">you may have to work %1s year and %2s day</string>
-    <string name="tv_result_4">you may have to work %2s days</string>
-    <string name="tv_result_5">you may have to work %2s day</string>
+    <string name="tv_result_4">you may have to work %1s days</string>
+    <string name="tv_result_5">you may have to work %1s day</string>
     <string name="tv_result_6">today is your last workday</string>
     <string name="tv_name">Hello %1s, </string>
     <string name="toast_dateOfBirth">Your date of birth can\'t be in future</string>
