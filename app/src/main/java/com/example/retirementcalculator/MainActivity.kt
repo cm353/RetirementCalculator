@@ -23,7 +23,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        JodaTimeAndroid.init(this);
+        JodaTimeAndroid.init(this)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(viewModel.result[0]!=-1 &&  viewModel.result[0]!=-2) {
+            updateUI()
+            dpResult.updateDate(viewModel.birthdate.year, viewModel.birthdate.monthOfYear-1,viewModel.birthdate.dayOfMonth)
+        }
     }
 
     private fun setRetirementAge() {
@@ -89,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideKeyboard(v : View) {
         val  inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0)
     }
 
     fun calc(v: View) {
@@ -100,6 +108,5 @@ class MainActivity : AppCompatActivity() {
         updateUI()
         hideKeyboard(v)
         }
-
 }
 

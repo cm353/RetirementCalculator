@@ -14,9 +14,9 @@ class RetirementViewModel : ViewModel() {
 
     lateinit var name : String
     lateinit var birthdate : DateTime
-    lateinit var retirementDate : DateTime
+    private lateinit var retirementDate : DateTime
     var retirementAge = 65
-    val now : DateTime = DateTime.now()
+    private val now : DateTime = DateTime.now()
     var result : IntArray = intArrayOf(-1, -1) // defaultinit
 
     fun setDateOfBirth(day:Int,month:Int,year: Int) {
@@ -42,12 +42,11 @@ class RetirementViewModel : ViewModel() {
     }
 
     fun dif()  {
-        if(Period(birthdate, now).millis < 0) {
-            Log.d(TAG, "dif: IllegalArgumentException ${Period(birthdate, now).millis}")
+        if(birthdate.compareTo(now) > 0) {
+            Log.d(TAG, "dif: birthdate is in future: diff=${Period(birthdate, now).millis}")
             result = intArrayOf(-2,-2) // Errorcode: birtdate in future
         } else {
-            Log.d(TAG, "dif: $birthdate -> $now")
-            Log.d(TAG, "dif compareto: ${Period(birthdate, now).millis}")
+            Log.d(TAG, "Birthdate: $birthdate Current date: $now")
             setYearOfRetirement()
             if(retirementDate.compareTo(now) < 1) {
                 result = intArrayOf(-3,-3) // Errorcode: person already retired
