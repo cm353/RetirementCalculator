@@ -13,7 +13,7 @@ class RetirementViewModel : ViewModel() {
     }
 
     lateinit var name : String
-    lateinit var birthdate : DateTime
+    var birthdate : DateTime = DateTime()
     private lateinit var retirementDate : DateTime
     var retirementAge = 65
     private val now : DateTime = DateTime.now()

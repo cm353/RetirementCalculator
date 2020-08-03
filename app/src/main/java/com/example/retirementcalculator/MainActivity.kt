@@ -1,18 +1,19 @@
 package com.example.retirementcalculator
 
-import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import net.danlew.android.joda.JodaTimeAndroid
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     val viewModel : RetirementViewModel by viewModels()
 
@@ -24,13 +25,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
+
+        //Datepicker
+        BTN_DATEPICKER.setOnClickListener {
+            DatepickerFragment().show(supportFragmentManager, DatepickerFragment.TAG)
+        }
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         if(viewModel.result[0]!=-1 &&  viewModel.result[0]!=-2) {
             updateUI()
-            dpResult.updateDate(viewModel.birthdate.year, viewModel.birthdate.monthOfYear-1,viewModel.birthdate.dayOfMonth)
         }
     }
 
@@ -42,10 +48,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.retirementAge = 65
             Log.d(TAG, "calc: retirement Age set to 65")
         }
-    }
-
-    private fun setDateOfBirth() {
-        viewModel.setDateOfBirth(dpResult.dayOfMonth,dpResult.month+1,dpResult.year )
     }
 
     private fun setName() {
@@ -101,12 +103,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun calc(v: View) {
-        setDateOfBirth()
+//        setDateOfBirth()
         setRetirementAge()
         setName()
         calculateTimeToRetirement()
         updateUI()
         hideKeyboard(v)
         }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        viewModel.setDateOfBirth(dayOfMonth,month+1,year)
+    }
+
+
 }
 

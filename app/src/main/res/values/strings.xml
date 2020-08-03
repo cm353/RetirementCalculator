@@ -15,4 +15,5 @@
     <string name="toast_name">Please enter your name</string>
     <string name="btn_retirement">Remaining time to retirement</string>
     <string name="retired">You are retired</string>
+    <string name="set_birthdate">set birthdate</string>
 </resources>

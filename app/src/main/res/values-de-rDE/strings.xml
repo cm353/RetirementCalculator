@@ -16,4 +16,5 @@
     <string name="toast_name">Bitte geben Sie Ihren Namen ein</string>
     <string name="btn_retirement">Verbleibende Zeit bis zur Rente</string>
     <string name="retired">Sie sind bereits in Rente</string>
+    <string name="set_birthdate">Geburtsdatum eingeben</string>
 </resources>
