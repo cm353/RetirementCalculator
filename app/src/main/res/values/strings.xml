@@ -2,7 +2,7 @@
     <string name="app_name">RetirementCalculator</string>
     <string name="name">name</string>
     <string name="birth_date">birth date</string>
-    <string name="retire_with_67">Retire with 67?</string>
+    <string name="retire_with_67">Retire with 67</string>
     <string name="tv_result">you may have to work %1s years and %2s days</string>
     <string name="tv_result_1">you may have to work %1s years and %2s day</string>
     <string name="tv_result_2">you may have to work %1s year and %2s days</string>
@@ -16,4 +16,5 @@
     <string name="btn_retirement">Remaining time to retirement</string>
     <string name="retired">You are retired</string>
     <string name="set_birthdate">set birthdate</string>
+    <string name="retire_with_65">Retire with 65</string>
 </resources>

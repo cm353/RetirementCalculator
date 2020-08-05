@@ -3,7 +3,7 @@
     <string name="app_name">Rentenrechner</string>
     <string name="name">Name</string>
     <string name="birth_date">Geburtsdatum</string>
-    <string name="retire_with_67">Rente mit 67?</string>
+    <string name="retire_with_67">Rente mit 67</string>
     <string name="tv_result">Sie müssen noch %1s Jahre und %2s Tage arbeiten</string>
     <string name="tv_result_1">Sie müssen noch %1s Jahre und %2s Tag arbeiten</string>
     <string name="tv_result_2">Sie müssen noch %1s Jahr und %2s Tage arbeiten</string>
@@ -17,4 +17,5 @@
     <string name="btn_retirement">Verbleibende Zeit bis zur Rente</string>
     <string name="retired">Sie sind bereits in Rente</string>
     <string name="set_birthdate">Geburtsdatum eingeben</string>
+    <string name="retire_with_65">Rente mit 65</string>
 </resources>

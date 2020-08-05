@@ -7,6 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RadioGroup
+        android:id="@+id/rg_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="50dp"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2">
+
+        <RadioButton
+            android:id="@+id/rb_retire_with_65"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/retire_with_65" />
+
+        <RadioButton
+            android:id="@+id/rb_retire_with_67"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/retire_with_67" />
+    </RadioGroup>
+
     <EditText
         android:id="@+id/et_firstname"
         android:layout_width="wrap_content"
@@ -20,35 +43,24 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Frank" />
 
-    <Switch
-        android:id="@+id/sw_retirement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/retire_with_67"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_firstname" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:onClick="calc"
         android:text="@string/btn_retirement"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_retirement" />
+        app:layout_constraintTop_toBottomOf="@+id/et_firstname" />
 
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rg_group"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="@string/tv_result" />
 

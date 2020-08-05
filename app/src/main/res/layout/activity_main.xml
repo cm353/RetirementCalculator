@@ -20,27 +20,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Frank" />
 
-    <Switch
-        android:id="@+id/sw_retirement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/retire_with_67"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_firstname" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:onClick="calc"
         android:text="@string/btn_retirement"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_retirement" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_group" />
 
     <TextView
         android:id="@+id/tv_result"
@@ -73,6 +62,31 @@
         android:text="@string/set_birthdate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_firstname">
+
+        <RadioButton
+            android:id="@+id/rb_retire_with_65"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/retire_with_65" />
+
+        <RadioButton
+            android:id="@+id/rb_retire_with_67"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/retire_with_67"
+            android:checked="true"
+            />
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun setRetirementAge() {
-        if( sw_retirement.isChecked) {
+        if( rb_retire_with_67.isChecked) {
             viewModel.retirementAge = 67
             Log.d(TAG, "calc: retirement Age set to 67")
-        } else {
+        } else if(rb_retire_with_65.isChecked) {
             viewModel.retirementAge = 65
             Log.d(TAG, "calc: retirement Age set to 65")
         }
@@ -103,7 +103,6 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     }
 
     fun calc(v: View) {
-//        setDateOfBirth()
         setRetirementAge()
         setName()
         calculateTimeToRetirement()
