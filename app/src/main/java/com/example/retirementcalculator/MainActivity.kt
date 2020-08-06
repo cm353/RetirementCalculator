@@ -1,5 +1,6 @@
 package com.example.retirementcalculator
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
@@ -10,12 +11,17 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import net.danlew.android.joda.JodaTimeAndroid
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     val viewModel : RetirementViewModel by viewModels()
+    lateinit var fmt : DateTimeFormatter
+
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -25,12 +31,16 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
+        fmt = DateTimeFormat.forPattern(getString(R.string.birthdate_format))
 
         //Datepicker
-        BTN_DATEPICKER.setOnClickListener {
+        et_birthdate.setOnClickListener {
             DatepickerFragment().show(supportFragmentManager, DatepickerFragment.TAG)
         }
 
+        viewModel.birthdate.observe(this@MainActivity, Observer {
+            et_birthdate.setText( it.toString(fmt))
+        })
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -64,37 +74,59 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             if(viewModel.result[0] > 1 && viewModel.result[1] > 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result,viewModel.result[0].toString(),viewModel.result[1].toString())
+                retirementDateText()
             }
             if(viewModel.result[0] > 1 && viewModel.result[1] == 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
-                tv_result.text = getString(R.string.tv_result_1,viewModel.result[0].toString(), viewModel.result[1].toString()) }
+                tv_result.text = getString(R.string.tv_result_1,viewModel.result[0].toString(), viewModel.result[1].toString())
+                retirementDateText()}
+
             if(viewModel.result[0] == 1 && viewModel.result[1] > 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
-                tv_result.text = getString(R.string.tv_result_2,viewModel.result[0].toString(), viewModel.result[1].toString()) }
+                tv_result.text = getString(R.string.tv_result_2,viewModel.result[0].toString(), viewModel.result[1].toString())
+                retirementDateText()}
+
             if(viewModel.result[0] == 1 && viewModel.result[1] == 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
-                tv_result.text = getString(R.string.tv_result_3,viewModel.result[0].toString(), viewModel.result[1].toString()) }
+                tv_result.text = getString(R.string.tv_result_3,viewModel.result[0].toString(), viewModel.result[1].toString())
+                retirementDateText()}
             if(viewModel.result[0] == 0 && viewModel.result[1] > 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
-                tv_result.text = getString(R.string.tv_result_4, viewModel.result[1].toString()) }
+                tv_result.text = getString(R.string.tv_result_4, viewModel.result[1].toString())
+                retirementDateText()}
+
             if(viewModel.result[0] == 0 && viewModel.result[1] == 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
-                tv_result.text = getString(R.string.tv_result_5, viewModel.result[1].toString()) }
+                tv_result.text = getString(R.string.tv_result_5, viewModel.result[1].toString())
+                retirementDateText()}
+
             if(viewModel.result[0] == 0 && viewModel.result[1] == 0 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
-                tv_result.text = getString(R.string.tv_result_6) }
+                tv_result.text = getString(R.string.tv_result_6)
+                retirementDateText()}
+
             if(viewModel.result[0] == -2 && viewModel.result[1] == -2) {
                 tv_name.text = ""
                 Toast.makeText(this, getText(R.string.toast_dateOfBirth), Toast.LENGTH_SHORT).show()
                 tv_result.text = ""
+                tv_ret_date.text = ""
+                tv_retdate_2.text = ""
             }
             if((viewModel.result[0] == -3 && viewModel.result[1] == -3)) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.retired)
+                tv_ret_date.text = ""
+                tv_retdate_2.text = ""
             }
         } else {
             Toast.makeText(this,getText(R.string.toast_name),Toast.LENGTH_SHORT).show()
         }
+    }
+
+
+    fun retirementDateText() {
+        tv_ret_date.text = getString(R.string.retdate_text, viewModel.retirementDate.plusDays(1).toString(fmt))
+        tv_retdate_2.text = getString(R.string.ret_date_2)
     }
 
     private fun hideKeyboard(v : View) {

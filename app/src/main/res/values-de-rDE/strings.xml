@@ -18,4 +18,7 @@
     <string name="retired">Sie sind bereits in Rente</string>
     <string name="set_birthdate">Geburtsdatum eingeben</string>
     <string name="retire_with_65">Rente mit 65</string>
+    <string name="birthdate_format">dd.MM.yyyy</string>
+    <string name="retdate_text">Freuen Sie sich auf den %1s,</string>
+    <string name="ret_date_2">dann sind Sie im Kommunismus</string>
 </resources>

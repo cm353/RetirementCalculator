@@ -1,9 +1,12 @@
 package com.example.retirementcalculator
 
 
+import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.joda.time.*
+import org.joda.time.format.DateTimeFormat
 
 
 class RetirementViewModel : ViewModel() {
@@ -13,18 +16,20 @@ class RetirementViewModel : ViewModel() {
     }
 
     lateinit var name : String
-    var birthdate : DateTime = DateTime()
-    private lateinit var retirementDate : DateTime
+
+    var birthdate = MutableLiveData<DateTime>(DateTime())
     var retirementAge = 65
+    var retirementDate : DateTime = birthdate.value!!.plusYears(retirementAge)
+
     private val now : DateTime = DateTime.now()
     var result : IntArray = intArrayOf(-1, -1) // defaultinit
 
     fun setDateOfBirth(day:Int,month:Int,year: Int) {
-        birthdate = DateTime(year,month,day,0,0,0)
+        birthdate.value = DateTime(year,month,day,0,0,0)
     }
 
     private fun setYearOfRetirement() {
-        retirementDate = birthdate.plusYears(retirementAge)
+        retirementDate = birthdate.value!!.plusYears(retirementAge)
     }
 
     private fun calculateYearsToRetirement() : Int {
@@ -42,8 +47,8 @@ class RetirementViewModel : ViewModel() {
     }
 
     fun dif()  {
-        if(birthdate.compareTo(now) > 0) {
-            Log.d(TAG, "dif: birthdate is in future: diff=${Period(birthdate, now).millis}")
+        if(birthdate.value!!.compareTo(now)  > 0) {
+            Log.d(TAG, "dif: birthdate is in future: diff=${Period(birthdate.value, now).millis}")
             result = intArrayOf(-2,-2) // Errorcode: birtdate in future
         } else {
             Log.d(TAG, "Birthdate: $birthdate Current date: $now")

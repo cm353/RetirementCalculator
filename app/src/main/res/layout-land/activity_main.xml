@@ -7,6 +7,54 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_result">
+
+        <TextView
+            android:id="@+id/tv_ret_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            tools:text="TextView" />
+
+        <TextView
+            android:id="@+id/tv_retdate_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_birthdate" />
+
+        <EditText
+            android:id="@+id/et_birthdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:ems="5"
+            android:focusable="false"
+            android:inputType="none"
+            tools:text="14.11.1989" />
+    </LinearLayout>
+
     <RadioGroup
         android:id="@+id/rg_group"
         android:layout_width="wrap_content"
@@ -73,16 +121,6 @@
         app:layout_constraintStart_toStartOf="@+id/tv_result"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Hello Frank" />
-
-    <Button
-        android:id="@+id/BTN_DATEPICKER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/set_birthdate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

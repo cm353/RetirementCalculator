@@ -17,4 +17,7 @@
     <string name="retired">You are retired</string>
     <string name="set_birthdate">set birthdate</string>
     <string name="retire_with_65">Retire with 65</string>
+    <string name="birthdate_format" >MM.dd.yyyy</string>
+    <string name="retdate_text">Anticipate the %1s,</string>
+    <string name="ret_date_2">this is your retirement date</string>
 </resources>
