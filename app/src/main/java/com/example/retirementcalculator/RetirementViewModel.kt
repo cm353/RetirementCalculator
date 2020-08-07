@@ -1,13 +1,9 @@
 package com.example.retirementcalculator
 
-
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.joda.time.*
-import org.joda.time.format.DateTimeFormat
-
 
 class RetirementViewModel : ViewModel() {
 
@@ -16,13 +12,12 @@ class RetirementViewModel : ViewModel() {
     }
 
     lateinit var name : String
-
     var birthdate = MutableLiveData<DateTime>(DateTime())
     var retirementAge = 65
     var retirementDate : DateTime = birthdate.value!!.plusYears(retirementAge)
-
     private val now : DateTime = DateTime.now()
     var result : IntArray = intArrayOf(-1, -1) // defaultinit
+    var secondsThread : Boolean = true
 
     fun setDateOfBirth(day:Int,month:Int,year: Int) {
         birthdate.value = DateTime(year,month,day,0,0,0)
@@ -61,6 +56,13 @@ class RetirementViewModel : ViewModel() {
                 result = intArrayOf(yearsToRetirement, daysToRetirement)
             }
         }
+    }
+
+    fun diffInSeconds() : Int {
+        val timeNow = DateTime()
+        val period = Interval(timeNow, retirementDate).toPeriod()
+        val duration = period.toDurationFrom(timeNow)
+        return duration.toStandardSeconds().seconds
     }
 
 

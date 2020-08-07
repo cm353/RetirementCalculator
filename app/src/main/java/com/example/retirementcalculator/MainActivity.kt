@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +14,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import net.danlew.android.joda.JodaTimeAndroid
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     val viewModel : RetirementViewModel by viewModels()
     lateinit var fmt : DateTimeFormatter
-
+    val handler : Handler = Handler()
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -70,57 +73,92 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
 
     private fun updateUI(){
+
         if(!viewModel.name.equals("")) {
             if(viewModel.result[0] > 1 && viewModel.result[1] > 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result,viewModel.result[0].toString(),viewModel.result[1].toString())
                 retirementDateText()
+                updateSecondsToRetirement()
+
             }
             if(viewModel.result[0] > 1 && viewModel.result[1] == 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result_1,viewModel.result[0].toString(), viewModel.result[1].toString())
-                retirementDateText()}
+                retirementDateText()
+                updateSecondsToRetirement()
+            }
 
             if(viewModel.result[0] == 1 && viewModel.result[1] > 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result_2,viewModel.result[0].toString(), viewModel.result[1].toString())
-                retirementDateText()}
+                retirementDateText()
+                updateSecondsToRetirement()
+            }
 
             if(viewModel.result[0] == 1 && viewModel.result[1] == 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result_3,viewModel.result[0].toString(), viewModel.result[1].toString())
-                retirementDateText()}
+                retirementDateText()
+                updateSecondsToRetirement()
+            }
             if(viewModel.result[0] == 0 && viewModel.result[1] > 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result_4, viewModel.result[1].toString())
-                retirementDateText()}
+                retirementDateText()
+                updateSecondsToRetirement()
+            }
 
             if(viewModel.result[0] == 0 && viewModel.result[1] == 1 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result_5, viewModel.result[1].toString())
-                retirementDateText()}
+                retirementDateText()
+                updateSecondsToRetirement()
+            }
 
             if(viewModel.result[0] == 0 && viewModel.result[1] == 0 ) {
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.tv_result_6)
-                retirementDateText()}
+                retirementDateText()
+                updateSecondsToRetirement()
+            }
 
             if(viewModel.result[0] == -2 && viewModel.result[1] == -2) {
+                viewModel.secondsThread = false
                 tv_name.text = ""
                 Toast.makeText(this, getText(R.string.toast_dateOfBirth), Toast.LENGTH_SHORT).show()
                 tv_result.text = ""
                 tv_ret_date.text = ""
                 tv_retdate_2.text = ""
+                tv_seconds.text = ""
             }
             if((viewModel.result[0] == -3 && viewModel.result[1] == -3)) {
+                viewModel.secondsThread = false
                 tv_name.text = getString(R.string.tv_name, viewModel.name)
                 tv_result.text = getString(R.string.retired)
                 tv_ret_date.text = ""
                 tv_retdate_2.text = ""
+                tv_seconds.text = ""
             }
+
+
         } else {
             Toast.makeText(this,getText(R.string.toast_name),Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun updateSecondsToRetirement() {
+        viewModel.secondsThread = true
+        GlobalScope.launch {
+            while(viewModel.secondsThread) {
+                var result = viewModel.diffInSeconds().toString()
+                handler.post {
+                    tv_seconds.text = result
+                }
+                Thread.sleep(1000)
+            }
+        }
+
     }
 
 
