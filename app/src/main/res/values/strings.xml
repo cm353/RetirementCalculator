@@ -10,6 +10,7 @@
     <string name="tv_result_4">you may have to work %1s days</string>
     <string name="tv_result_5">you may have to work %1s day</string>
     <string name="tv_result_6">today is your last workday</string>
+    <string name="tv_seconds">Only %1s s remaining</string>
     <string name="tv_name">Hello %1s, </string>
     <string name="toast_dateOfBirth">Your date of birth can\'t be in future</string>
     <string name="toast_name">Please enter your name</string>

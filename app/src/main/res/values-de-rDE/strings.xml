@@ -21,4 +21,5 @@
     <string name="birthdate_format">dd.MM.yyyy</string>
     <string name="retdate_text">Freuen Sie sich auf den %1s,</string>
     <string name="ret_date_2">dann sind Sie im Kommunismus</string>
+    <string name="tv_seconds">Nur noch %1s s</string>
 </resources>

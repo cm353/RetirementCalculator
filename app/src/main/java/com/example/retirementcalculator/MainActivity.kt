@@ -15,16 +15,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.danlew.android.joda.JodaTimeAndroid
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
+import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     val viewModel : RetirementViewModel by viewModels()
     lateinit var fmt : DateTimeFormatter
     val handler : Handler = Handler()
+    val decFormat = DecimalFormat("#,###.##")
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -151,14 +154,14 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         viewModel.secondsThread = true
         GlobalScope.launch {
             while(viewModel.secondsThread) {
-                var result = viewModel.diffInSeconds().toString()
+                val result : Int = viewModel.diffInSeconds()
+                val formattetResult = decFormat.format(result)
                 handler.post {
-                    tv_seconds.text = result
+                    tv_seconds.text = getString(R.string.tv_seconds, formattetResult)
                 }
-                Thread.sleep(1000)
+                delay(1000)
             }
         }
-
     }
 
 
